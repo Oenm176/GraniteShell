@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+
+# File spesifik pengguna (JANGAN UNGGAH INI)
+data/profil.json
+
+# File hasil build PyInstaller
+build/
+dist/
+*.spec
+
+# File OS
+.DS_Store
+Thumbs.db
