@@ -16,7 +16,7 @@
 In modern development, constantly switching between a code editor, documentation, and the terminal can break your focus. GraniteShell is here to unify that experience, allowing you to ask questions, generate code, and get answers without ever leaving your terminal window.
 
 *(Recommended: Replace the image below with a GIF showing a short demo of your application)*
-![GraniteShell Application Demo](asset/Desain%20View.png)
+![GraniteShell Application Demo](asset/preview_graniteshell.png)
 
 ### **🚀 Key Features**
 
