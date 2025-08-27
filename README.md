@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="asset/Granite_shell_png.png" alt="GraniteShell Logo" width="150"/>
+  <img src="asset/GraniteShell.png" alt="GraniteShell Logo" width="150"/>
   <h1>GraniteShell</h1>
   <p>
     <strong>A Smart Terminal Powered by AI 💡</strong>
@@ -15,7 +15,7 @@
 
 In modern development, constantly switching between a code editor, documentation, and the terminal can break your focus. GraniteShell is here to unify that experience, allowing you to ask questions, generate code, and get answers without ever leaving your terminal window.
 
-![GraniteShell Application Demo](asset/GraniteShell_trasparent.svg)
+![GraniteShell Application Demo](asset/preview_graniteshell.png)
 
 ### **🚀 Key Features**
 
