@@ -23,7 +23,7 @@ In modern development, constantly switching between a code editor, documentation
 * **🤖 Integrated AI Mode**: Activate `/activate_ai` mode to interact directly with a powerful language model.
 * **💾 Local Storage**: Automatically save AI outputs, including code blocks, for future reference.
 * **🔧 Profile Customization**: Set your own username and storage directory to personalize your experience.
-* **🌐 Multi-Model Ready**: Designed to be adaptable for various AI models in the future.
+* **🌐 Multi-Model Ready**: Designed to be adaptable for various AI models in the future. (Coming Soon)
 
 ---
 
