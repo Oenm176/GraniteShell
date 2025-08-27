@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="asset/GraniteShell.png" alt="GraniteShell Logo" width="150"/>
+  <img src="asset/Granite_shell.png" alt="GraniteShell Logo" width="150"/>
   <h1>GraniteShell</h1>
   <p>
     <strong>A Smart Terminal Powered by AI 💡</strong>
