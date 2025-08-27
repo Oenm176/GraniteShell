@@ -5,7 +5,6 @@ import os
 import re
 import html
 from PyQt6.QtWidgets import QApplication
-
 from ui.main_window import MainWindow
 from utils.file_handler import ProfileHandler
 from api.granite_api import GraniteAPI

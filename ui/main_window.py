@@ -9,6 +9,16 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QIcon, QTextCursor, QKeyEvent, QMouseEvent
 from PyQt6.QtCore import Qt, pyqtSignal
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 class TerminalArea(QTextEdit):
     commandEntered = pyqtSignal(str)
 
@@ -20,6 +30,7 @@ class TerminalArea(QTextEdit):
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
 
         self.protected_ranges: list[tuple[int, int]] = []
+
 
     def _pos_in_protected(self, pos: int) -> bool:
         for a, b in self.protected_ranges:
@@ -184,7 +195,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.username = "anonymous"
-        icon_path = r"D:\Pemograman Python\Project_Pyhton\GraniteShell\asset\Granite_shell_png.png"
+        icon_path = resource_path("asset\Granite_shell.png")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
         self._init_ui()
@@ -248,6 +259,11 @@ class MainWindow(QMainWindow):
         super().clear()
         self.protected_ranges.clear()
         self.input_start_pos = 0
+
+    def clear_screen(self):
+        """Membersihkan layar terminal dan menampilkan prompt baru."""
+        self.terminal.clear()
+        self.terminal._show_prompt()
 
     def _apply_stylesheet(self):
         font_family = "Consolas, 'Courier New', monospace"
