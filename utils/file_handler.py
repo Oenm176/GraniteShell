@@ -5,25 +5,25 @@ import json
 
 class ProfileHandler:
     """
-    Kelas untuk mengelola semua operasi file terkait profil pengguna.
-    Membaca, menulis, dan menghapus file profil.json.
+    A class to manage all file operations related to the user profile.
+    It handles reading, writing, and deleting the profile.json file.
     """
     def __init__(self, file_path: str):
         """
-        Inisialisasi handler dengan path ke file profil.
+        Initializes the handler with the path to the profile file.
         """
         self.file_path = file_path
-        # Pastikan direktori untuk file profil ada
+        # Ensure the directory for the profile file exists.
         os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
 
     def get_default_profile(self) -> dict:
         """
-        DITAMBAHKAN: Mengembalikan struktur data profil default.
-        Ini akan digunakan saat profil baru dibuat.
+        ADDED: Returns the default profile data structure.
+        This is used when a new profile is being created.
         """
         return {
             "username": "anonymous",
-            "save_path": os.getcwd(),
+            "save_path": os.getcwd(), # Defaults to the current working directory.
             "active_model": "ibm-granite",
             "models": {
                 "ibm-granite": {
@@ -35,8 +35,8 @@ class ProfileHandler:
 
     def read_profile(self) -> dict | None:
         """
-        Membaca file profil dan mengembalikan isinya sebagai dictionary.
-        Mengembalikan None jika file tidak ada atau terjadi error.
+        Reads the profile file and returns its content as a dictionary.
+        Returns None if the file doesn't exist or if an error occurs.
         """
         if not os.path.exists(self.file_path):
             return None
@@ -44,15 +44,17 @@ class ProfileHandler:
             with open(self.file_path, 'r') as f:
                 return json.load(f)
         except (json.JSONDecodeError, IOError):
+            # Handles cases where the file is corrupted or unreadable.
             return None
 
     def write_profile(self, data: dict) -> bool:
         """
-        Menulis dictionary data ke file profil.
-        Mengembalikan True jika berhasil, False jika gagal.
+        Writes a data dictionary to the profile file in JSON format.
+        Returns True on success, False on failure.
         """
         try:
             with open(self.file_path, 'w') as f:
+                # `indent=4` makes the JSON file human-readable.
                 json.dump(data, f, indent=4)
             return True
         except IOError:
@@ -60,28 +62,31 @@ class ProfileHandler:
 
     def delete_profile(self) -> bool:
         """
-        Menghapus file profil.
-        Mengembalikan True jika berhasil atau file sudah tidak ada.
+        Deletes the profile file from the filesystem.
+        Returns True if successful or if the file was already gone.
         """
         if os.path.exists(self.file_path):
             try:
                 os.remove(self.file_path)
                 return True
             except OSError:
+                # This could happen due to permission issues.
                 return False
-        return True # File sudah tidak ada, dianggap berhasil
+        return True # If file doesn't exist, consider it a success.
     
     def write_file(self, full_path: str, content: str) -> bool:
         """
-        Metode generik untuk menulis konten ke file.
-        Membuat direktori jika belum ada.
+        A generic method to write any string content to a specified file.
+        It creates the necessary directories if they don't already exist.
         """
         try:
-            # Pastikan direktori tujuan ada
+            # Ensure the target directory exists before writing.
             os.makedirs(os.path.dirname(full_path), exist_ok=True)
+            # `encoding='utf-8'` is best practice for handling all characters.
             with open(full_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             return True
         except IOError as e:
+            # Print an error to the console for debugging purposes.
             print(f"Error writing file {full_path}: {e}")
             return False
